@@ -73,7 +73,7 @@ class Detect(nn.Module):
                         [1, 3, 80, 80, 25] [1, 3, 40, 40, 25] [1, 3, 20, 20, 25]
         """
         z = []  # inference output
-        logits_ = []  # 修改---1
+        # logits_ = []  # 修改---1
         #对三个feature map分别进行处理
         for i in range(self.nl):
             x[i] = self.m[i](x[i])  # conv
@@ -87,7 +87,7 @@ class Detect(nn.Module):
                 # 所以这里构建网格就是为了记录每个grid的网格坐标 方面后面使用
                 if self.onnx_dynamic or self.grid[i].shape[2:4] != x[i].shape[2:4]:
                     self.grid[i], self.anchor_grid[i] = self._make_grid(nx, ny, i)
-                logits = x[i][..., 5:]  # 修改---2
+                # logits = x[i][..., 5:]  # 修改---2
                 y = x[i].sigmoid()
                 if self.inplace:
                     # 默认执行 不使用AWS Inferentia
@@ -100,9 +100,9 @@ class Detect(nn.Module):
                     y = torch.cat((xy, wh, y[..., 4:]), -1)
                 # z是一个tensor list 三个元素 分别是[1, 19200, 25] [1, 4800, 25] [1, 1200, 25]
                 z.append(y.view(bs, -1, self.no))
-                logits_.append(logits.view(bs, -1, self.no - 5))  # 修改---3
+                # logits_.append(logits.view(bs, -1, self.no - 5))  # 修改---3
         return x if self.training else (torch.cat(z, 1), x)
-        # return x if self.training else (z[0], x) # (torch.cat(z, 1), x)
+        # return x if self.training else (torch.cat(z, 1), torch.cat(logits_, 1), x) # 修改---4
 
     def _make_grid(self, nx=20, ny=20, i=0):
         d = self.anchors[i].device
@@ -115,6 +115,19 @@ class Detect(nn.Module):
             .view((1, self.na, 1, 1, 2)).expand((1, self.na, ny, nx, 2)).float()
         return grid, anchor_grid
 
+class ASFF_Detect(Detect):
+    # ASFF model for improvement
+    def __init__(self, nc=80, anchors=(), ch=(), inplace=True):  # detection layer
+        super().__init__(nc, anchors, ch, inplace)
+        self.nl = len(anchors)
+        self.asffs = nn.ModuleList(ASFF(i) for i in range(self.nl))
+        self.detect = Detect.forward
+
+    def forward(self, x): # x中的特征图从大到小，与ASFF中顺序相反，因此输入前先反向
+        x = x[::-1]
+        for i in range(self.nl):
+            x[i] = self.asffs[i](*x)
+        return self.detect(self, x[::-1])
 
 # ======================= 解耦头=============================#
 class DecoupledHead(nn.Module):
@@ -360,7 +373,7 @@ class Model(nn.Module):
         # 获取Detect模块的stride(相对输入图像的下采样率)和anchors在当前Detect输出的feature map的尺度
         # Build strides, anchors
         m = self.model[-1]  # Detect()
-        if isinstance(m, Detect) or isinstance(m, CLLADetect):
+        if isinstance(m, Detect) or isinstance(m, CLLADetect) or isinstance(m,ASFF_Detect):
             s = 256  # 2x min stride
             m.inplace = self.inplace
             # 计算三个feature map下采样的倍率  [8, 16, 32]
@@ -371,7 +384,7 @@ class Model(nn.Module):
             check_anchor_order(m)
             self.stride = m.stride
             # only run once 初始化偏置
-            if isinstance(m, Detect) or isinstance(m, CLLADetect):
+            if isinstance(m, Detect) or isinstance(m, CLLADetect)or isinstance(m, ASFF_Detect):
                 self._initialize_biases()  # only run once
         if isinstance(m, Decoupled_Detect):
             s = 256  # 2x min stride
@@ -445,6 +458,9 @@ class Model(nn.Module):
                 self._profile_one_layer(m, x, dt)
             if isinstance(m, nn.Upsample):
                 m.recompute_scale_factor = False
+            #修改
+            if isinstance(m, ODConv_3rd):
+                x=x.contiguous()
             x = m(x)  # run 正向推理
             # 存放着self.save的每一层的输出，因为后面需要用来作concat等操作要用到  不在self.save层的输出就为None
             y.append(x if m.i in self.save else None)  # save output
@@ -498,7 +514,7 @@ class Model(nn.Module):
 
     def _profile_one_layer(self, m, x, dt):
         # 打印日志信息  FLOPs time等
-        c = isinstance(m, Detect) or isinstance(m, Decoupled_Detect) # is final layer, copy input as inplace fix
+        c = isinstance(m, Detect) or isinstance(m, Decoupled_Detect) or isinstance(m,ASFF_Detect) # is final layer, copy input as inplace fix
         o = thop.profile(m, inputs=(x.copy() if c else x,), verbose=False)[0] / 1E9 * 2 if thop else 0  # FLOPs
         t = time_sync()
         for _ in range(10):
@@ -515,7 +531,7 @@ class Model(nn.Module):
         # cf = torch.bincount(torch.tensor(np.concatenate(dataset.labels, 0)[:, 0]).long(), minlength=nc) + 1.
         m = self.model[-1]  # Detect() module
 
-        if isinstance(m, Detect) or isinstance(m, Decoupled_Detect):
+        if isinstance(m, Detect) or isinstance(m, Decoupled_Detect) or isinstance(m,ASFF_Detect):
             for mi, s in zip(m.m, m.stride):  # from
                 b = mi.bias.view(m.na, -1)  # conv.bias(255) to (3,85)
                 b.data[:, 4] += math.log(8 / (640 / s) ** 2)  # obj (8 objects per 640 image)
@@ -586,7 +602,7 @@ class Model(nn.Module):
         # Apply to(), cpu(), cuda(), half() to model tensors that are not parameters or registered buffers
         self = super()._apply(fn)
         m = self.model[-1]  # Detect()
-        if isinstance(m, (Detect, Decoupled_Detect)):
+        if isinstance(m, (Detect, Decoupled_Detect,ASFF_Detect)):
             m.stride = fn(m.stride)
             m.grid = list(map(fn, m.grid))
             if isinstance(m.anchor_grid, list):
@@ -629,9 +645,9 @@ def parse_model(d, ch):  # model_dict, input_channels(3)
         # ------------------- 更新当前层的args（参数）,计算c2（当前层的输出channel） -------------------
         # depth gain 控制深度  如v5s: n*0.33   n: 当前模块的次数(间接控制深度)
         n = n_ = max(round(n * gd), 1) if n > 1 else n  # depth gain
-        if m in [Conv, GhostConv, Bottleneck, GhostBottleneck, SPP, SPPF, DWConv, MixConv2d, Focus, CrossConv,
-                 BottleneckCSP, C3, C3TR, C3STR, C3SPP, C3Ghost, ASPP, CBAM, BAM , nn.ConvTranspose2d,DWConvTranspose2d, C3_CBAM,C3_BAM,C3_CA, C3_SCBAM,
-                 C3CR, C2f,C2fBAM, SPPELAN, SPPCSPC, ResBlock_CBAM, se_block,RepVGGBlock, ADown,C3x, RepC3,C2fAttn,Conv2Former]:
+        if m in [Conv, GhostConv, Bottleneck, GhostBottleneck, SPP, SPPF, DWConv, MixConv2d, Focus, CrossConv,SCDown,PSA,C3_CBAMS,C3_CBAMS_DWC,C3_CBAM_DWC,CoordConv,SimConv,
+                 BottleneckCSP, C3, C3TR, C3STR, C3SPP, C3Ghost, ASPP, CBAM, BAM , nn.ConvTranspose2d,DWConvTranspose2d, C3_CBAM,C3_BAM,C3_CA,C3_SCBAM,C3GAM,C3CPCA,
+                 C3CR, C2f,C2fCBAM,C2fBAM, SPPELAN, SPPCSPC,SPPCSPCS, ResBlock_CBAM, se_block,RepVGGBlock, ADown,C3x, RepC3,C2fAttn,Conv2Former,Involution,BasicRFB,BasicRFB_a]:
             # c1: 当前层的输入的channel数
             # c2: 当前层的输出的channel数(初定)
             # ch: 记录着所有层的输出channel
@@ -645,12 +661,18 @@ def parse_model(d, ch):  # model_dict, input_channels(3)
             args = [c1, c2, *args[1:]]
             # 如果当前层是BottleneckCSP/C3/C3TR, 则需要在args中加入bottleneck的个数
             # [in_channel, out_channel, Bottleneck的个数n, bool(True表示有shortcut 默认，反之无)]
-            if m in [BottleneckCSP, C3, C3TR, C3STR, C3Ghost,C3CR, C2f,C2fBAM, Conv2Former,SPPCSPC,C2fAttn, C3x, RepC3,C3_CBAM,C3_BAM, C3_SCBAM]:
+            if m in [BottleneckCSP, C3, C3TR, C3STR, C3Ghost,C3CR, C2f,C2fBAM,C2fCBAM, Conv2Former,SPPCSPC,SPPCSPCS,C2fAttn, C3x, RepC3,C3_CBAM,C3_CBAMS,C3_BAM, C3_SCBAM,C3GAM,C3CPCA,C3_CBAMS_DWC,C3_CBAM_DWC]:
                 args.insert(2, n)  # number of repeats，在第二个位置插入bottleneck个数n
                 n = 1  # 恢复默认值1
         elif m is nn.BatchNorm2d:
             # BN层只需要返回上一层的输出channel
             args = [ch[f]]
+        elif m in [ACmix]:
+            #[-1, 1, ACmix, [1024]], #9
+            c1, c2 = ch[f], args[0]
+            if c2 != no:  # if not output
+                c2 = make_divisible(c2 * gw, 8)
+            args = [c1, c2, *args[1:]]
         elif m in [SimAM]:
             args = [*args[:]]
         elif m in [ODConv_3rd,ODConv]:
@@ -660,12 +682,25 @@ def parse_model(d, ch):  # model_dict, input_channels(3)
             if c2 != no:  # if not output
                 c2 = make_divisible(c2 * gw, 8)
             args = [c1, c2, *args[1:]]
-
+        elif m is CNeB:
+            c1, c2 = ch[f], args[0]
+            if c2 != no:
+                c2 = make_divisible(c2 * gw, 8)
+            args = [c1, c2, *args[1:]]
+            if m is CNeB:
+                args.insert(2, n)
+                n = 1
+        elif m in [ConvMix, CSPCM]:
+            c1, c2 = ch[f], args[0]
+            if c2 != no:  # if not outputss
+                c2 = make_divisible(c2 * gw, 8)
+            args = [c1, c2, *args[1:]]
         elif m is DownSimper:
             c2 = args[0]
             c1 = ch[f]
             args = [c1, c2]
         elif m is CARAFE:
+            # [-1, 1, CARAFE, [512,3,2]],
             c2 = ch[f]
             args = [c2, *args]
         # 添加bifpn_add结构
@@ -678,6 +713,9 @@ def parse_model(d, ch):  # model_dict, input_channels(3)
         elif m is BAM:
             args = [ch[f]]
         elif m in [S2Attention]:
+            c1 = ch[f]
+            args = [c1]
+        elif m in [CPCA]:
             c1 = ch[f]
             args = [c1]
         elif m in [NAMAttention]:
@@ -710,7 +748,19 @@ def parse_model(d, ch):  # model_dict, input_channels(3)
             # 将输入通道数 ch[f] 增加了四倍
             # 4 是基于 SPD 的 block_size 为 2 的假设。如果 block_size 有所不同，这个数字应该是 block_size 的平方
             # ch 是一个包含前面所有层输出通道数的列表，f 是指向前面某层的索引
+        elif m is SPD:
+            c2 = 4 * ch[f]
+            #[-1, 1, SPD, [1]], # 添加SPD层，用于增强对小尺寸特征的处理能力
+            #[-1, 1, Conv, [64, 3, 1]], # 在SPD层之后添加非步长卷积层，以保留细粒度信息
+        # 将输入通道数 ch[f] 增加了四倍
+        # 4 是基于 SPD 的 block_size 为 2 的假设。如果 block_size 有所不同，这个数字应该是 block_size 的平方
+        # ch 是一个包含前面所有层输出通道数的列表，f 是指向前面某层的索引
         elif m is Detect: # Detect（YOLO Layer）层
+            # 在args中加入三个Detect层的输出channel
+            args.append([ch[x] for x in f])
+            if isinstance(args[1], int):  # number of anchors
+                args[1] = [list(range(args[1] * 2))] * len(f)
+        elif m is ASFF_Detect: # Detect（YOLO Layer）层
             # 在args中加入三个Detect层的输出channel
             args.append([ch[x] for x in f])
             if isinstance(args[1], int):  # number of anchors

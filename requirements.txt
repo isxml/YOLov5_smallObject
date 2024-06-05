@@ -14,7 +14,7 @@ tqdm>=4.41.0
 
 # Logging -------------------------------------
 tensorboard>=2.4.1
-wandb
+wandb~=0.12.21
 
 # Plotting ------------------------------------
 pandas>=1.1.4
@@ -33,5 +33,14 @@ albumentations>=1.0.3
 # Cython  # for pycocotools https://github.com/cocodataset/cocoapi/issues/172
 # pycocotools>=2.0  # COCO mAP
 # roboflow
-thop  # FLOPs computation
+thop~=0.1.1.post2209072238
 ensemble_boxes
+Flask~=2.2.5
+tensorflow~=2.11.0
+ultralytics~=8.0.145
+einops~=0.6.1
+monai~=1.1.0
+yolov5~=7.0.13
+timm~=0.4.12
+DCNv4~=1.0.0.post2
+setuptools~=50.3.2
