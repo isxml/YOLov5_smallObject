@@ -4,30 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aa895dd3-c6ea-4159-990b-bec3f913e6f2" name="更改" comment="5.16">
-      <change afterPath="$PROJECT_DIR$/tph-yolov5/models/HAttention.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tph-yolov5/models/model/yolov8.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tph-yolov5/models/model/yolov8_C2FCBAM_P5_ODConv_BiFPN_ContextHead_CoordConv.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tph-yolov5/models/model/yolov8_C2FCBAM_P5_ODConv_BiFPN_CoordConv.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tph-yolov5/models/model/yolov8_C2FCBAM_P5_ODConv_SDI_CPCAHead_CoordConv.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tph-yolov5/models/yolov10_HSFPN.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tph-yolov5/models/yolov8_C2fCBAM_ODConvDown_BIFPN.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tph-yolov5/models/yolov8_C2fCBAM_ODConvUp_BIFPN.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tph-yolov5/models/yolov8_p2.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/common.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/common.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tph-yolov5/detect.py" beforeDir="false" afterPath="$PROJECT_DIR$/tph-yolov5/detect.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tph-yolov5/models/common.py" beforeDir="false" afterPath="$PROJECT_DIR$/tph-yolov5/models/common.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tph-yolov5/models/yolo.py" beforeDir="false" afterPath="$PROJECT_DIR$/tph-yolov5/models/yolo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tph-yolov5/models/yolov5l-SPD-Conv2Former.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/tph-yolov5/models/yolov5l-SPD-Conv2Former.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tph-yolov5/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/tph-yolov5/train.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tph-yolov5/utils/general.py" beforeDir="false" afterPath="$PROJECT_DIR$/tph-yolov5/utils/general.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tph-yolov5/utils/loss.py" beforeDir="false" afterPath="$PROJECT_DIR$/tph-yolov5/utils/loss.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tph-yolov5/utils/metrics.py" beforeDir="false" afterPath="$PROJECT_DIR$/tph-yolov5/utils/metrics.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tph-yolov5/val.py" beforeDir="false" afterPath="$PROJECT_DIR$/tph-yolov5/val.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/loss.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/loss.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/metrics.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/metrics.py" afterDir="false" />
-    </list>
+    <list default="true" id="aa895dd3-c6ea-4159-990b-bec3f913e6f2" name="更改" comment="5.16" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -52,7 +29,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/tph-yolov5" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -61,31 +38,32 @@
     <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2dcroetPJzNcLZt4vVNHLPqg1Eg" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;ToolWindowGit.ShowToolbar&quot;: &quot;false&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowPanel.toolwindow.highlight.mappings&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowPanel.toolwindow.highlight.symlinks&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowPanel.toolwindow.show.date&quot;: &quot;false&quot;,
-    &quot;WebServerToolWindowPanel.toolwindow.show.permissions&quot;: &quot;false&quot;,
-    &quot;WebServerToolWindowPanel.toolwindow.show.size&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/PycharmProjects/tph-yolov5-main/tph-yolov5-main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "ToolWindowGit.ShowToolbar": "false",
+    "WebServerToolWindowFactoryState": "true",
+    "WebServerToolWindowPanel.toolwindow.highlight.mappings": "true",
+    "WebServerToolWindowPanel.toolwindow.highlight.symlinks": "true",
+    "WebServerToolWindowPanel.toolwindow.show.date": "false",
+    "WebServerToolWindowPanel.toolwindow.show.permissions": "false",
+    "WebServerToolWindowPanel.toolwindow.show.size": "false",
+    "last_opened_file_path": "D:/PycharmProjects/tph-yolov5-main/tph-yolov5-main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\PycharmProjects\tph-yolov5-main\tph-yolov5-main\tph-yolov5\models\model" />
@@ -252,7 +230,7 @@
       <workItem from="1717053220247" duration="12609000" />
       <workItem from="1717146527763" duration="44656000" />
       <workItem from="1718262129663" duration="3966000" />
-      <workItem from="1718277530909" duration="5644000" />
+      <workItem from="1718277530909" duration="7121000" />
     </task>
     <task id="LOCAL-00001" summary="5.16">
       <option name="closed" value="true" />
@@ -262,7 +240,31 @@
       <option name="project" value="LOCAL" />
       <updated>1715828460567</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="5.16">
+      <option name="closed" value="true" />
+      <created>1718283385492</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1718283385492</updated>
+    </task>
+    <task id="LOCAL-00003" summary="5.16">
+      <option name="closed" value="true" />
+      <created>1718284412008</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1718284412008</updated>
+    </task>
+    <task id="LOCAL-00004" summary="5.16">
+      <option name="closed" value="true" />
+      <created>1718285073946</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1718285073946</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -280,6 +282,9 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/tph-yolov5" />
+    </ignored-roots>
     <MESSAGE value="Update README.md" />
     <MESSAGE value="5.16" />
     <option name="LAST_COMMIT_MESSAGE" value="5.16" />
