@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="aa895dd3-c6ea-4159-990b-bec3f913e6f2" name="更改" comment="5.16">
+      <change afterPath="$PROJECT_DIR$/tph-yolov5/models/HAttention.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tph-yolov5/models/model/yolov8.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tph-yolov5/models/model/yolov8_C2FCBAM_P5_ODConv_BiFPN_ContextHead_CoordConv.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tph-yolov5/models/model/yolov8_C2FCBAM_P5_ODConv_BiFPN_CoordConv.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tph-yolov5/models/model/yolov8_C2FCBAM_P5_ODConv_SDI_CPCAHead_CoordConv.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tph-yolov5/models/yolov10_HSFPN.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tph-yolov5/models/yolov8_C2fCBAM_ODConvDown_BIFPN.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tph-yolov5/models/yolov8_C2fCBAM_ODConvUp_BIFPN.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tph-yolov5/models/yolov8_p2.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/common.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/common.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tph-yolov5/detect.py" beforeDir="false" afterPath="$PROJECT_DIR$/tph-yolov5/detect.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tph-yolov5/models/common.py" beforeDir="false" afterPath="$PROJECT_DIR$/tph-yolov5/models/common.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tph-yolov5/models/yolo.py" beforeDir="false" afterPath="$PROJECT_DIR$/tph-yolov5/models/yolo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tph-yolov5/models/yolov5l-SPD-Conv2Former.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/tph-yolov5/models/yolov5l-SPD-Conv2Former.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tph-yolov5/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/tph-yolov5/train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tph-yolov5/utils/general.py" beforeDir="false" afterPath="$PROJECT_DIR$/tph-yolov5/utils/general.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tph-yolov5/utils/loss.py" beforeDir="false" afterPath="$PROJECT_DIR$/tph-yolov5/utils/loss.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tph-yolov5/utils/metrics.py" beforeDir="false" afterPath="$PROJECT_DIR$/tph-yolov5/utils/metrics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tph-yolov5/val.py" beforeDir="false" afterPath="$PROJECT_DIR$/tph-yolov5/val.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/loss.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/loss.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/metrics.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/metrics.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/tph-yolov5" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectId" id="2dcroetPJzNcLZt4vVNHLPqg1Eg" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;ToolWindowGit.ShowToolbar&quot;: &quot;false&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.highlight.mappings&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.highlight.symlinks&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.show.date&quot;: &quot;false&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.show.permissions&quot;: &quot;false&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.show.size&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/PycharmProjects/tph-yolov5-main/tph-yolov5-main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\PycharmProjects\tph-yolov5-main\tph-yolov5-main\tph-yolov5\models\model" />
+      <recent name="D:\PycharmProjects\tph-yolov5-main\tph-yolov5-main\tph-yolov5" />
+      <recent name="D:\PycharmProjects\tph-yolov5-main\tph-yolov5-main\tph-yolov5\runs" />
+      <recent name="D:\PycharmProjects\tph-yolov5-main\tph-yolov5-main\tph-yolov5\runs\test" />
+      <recent name="D:\PycharmProjects\tph-yolov5-main\tph-yolov5-main\tph-yolov5\models" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.train">
+    <configuration name="plot_results2 (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="tph-yolov5-main" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tph-yolov5" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tph-yolov5/plot_results2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="train" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="tph-yolov5-main" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tph-yolov5" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tph-yolov5/train.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="val (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="tph-yolov5-main" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/val.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="val" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="tph-yolov5-main" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tph-yolov5" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tph-yolov5/val.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="train.sh" type="ShConfigurationType" temporary="true">
+      <option name="SCRIPT_TEXT" value="" />
+      <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
+      <option name="SCRIPT_PATH" value="$PROJECT_DIR$/tph-yolov5/train.sh" />
+      <option name="SCRIPT_OPTIONS" value="" />
+      <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
+      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$/tph-yolov5" />
+      <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
+      <option name="INTERPRETER_PATH" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="EXECUTE_IN_TERMINAL" value="true" />
+      <option name="EXECUTE_SCRIPT_FILE" value="true" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.val" />
+      <item itemvalue="Python.val (1)" />
+      <item itemvalue="Python.plot_results2 (1)" />
+      <item itemvalue="Python.train" />
+      <item itemvalue="Shell Script.train.sh" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.train" />
+        <item itemvalue="Shell Script.train.sh" />
+        <item itemvalue="Python.val" />
+        <item itemvalue="Python.val (1)" />
+        <item itemvalue="Python.plot_results2 (1)" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="aa895dd3-c6ea-4159-990b-bec3f913e6f2" name="更改" comment="" />
+      <created>1710318383482</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1710318383482</updated>
+      <workItem from="1710318384517" duration="10173000" />
+      <workItem from="1710336040094" duration="2421000" />
+      <workItem from="1710381272766" duration="31889000" />
+      <workItem from="1710725275880" duration="4700000" />
+      <workItem from="1710731406817" duration="5481000" />
+      <workItem from="1710753708890" duration="11205000" />
+      <workItem from="1710903791693" duration="2282000" />
+      <workItem from="1710990021028" duration="319000" />
+      <workItem from="1710990356757" duration="3013000" />
+      <workItem from="1711021250273" duration="61803000" />
+      <workItem from="1711510992379" duration="54125000" />
+      <workItem from="1711698693837" duration="11992000" />
+      <workItem from="1711941279593" duration="60622000" />
+      <workItem from="1712453614606" duration="8116000" />
+      <workItem from="1712462390710" duration="67426000" />
+      <workItem from="1712823868322" duration="20781000" />
+      <workItem from="1712888370893" duration="178100000" />
+      <workItem from="1715174109947" duration="18861000" />
+      <workItem from="1715312402734" duration="10861000" />
+      <workItem from="1715563193818" duration="14518000" />
+      <workItem from="1715758908757" duration="34633000" />
+      <workItem from="1716170703511" duration="19774000" />
+      <workItem from="1716274234421" duration="28759000" />
+      <workItem from="1716446729141" duration="8608000" />
+      <workItem from="1716773593531" duration="29107000" />
+      <workItem from="1717053220247" duration="12609000" />
+      <workItem from="1717146527763" duration="44656000" />
+      <workItem from="1718262129663" duration="3966000" />
+      <workItem from="1718277530909" duration="5644000" />
+    </task>
+    <task id="LOCAL-00001" summary="5.16">
+      <option name="closed" value="true" />
+      <created>1715828460567</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1715828460567</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Update README.md" />
+    <MESSAGE value="5.16" />
+    <option name="LAST_COMMIT_MESSAGE" value="5.16" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/train.py</url>
+          <line>628</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/val.py</url>
+          <line>220</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/val.py</url>
+          <line>38</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/val.py</url>
+          <line>48</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/val.py</url>
+          <line>67</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/val.py</url>
+          <line>329</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/tph-yolov5/utils/datasets.py</url>
+          <line>342</line>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/utils/autoanchor.py</url>
+          <line>17</line>
+          <option name="timeStamp" value="104" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/detect.py</url>
+          <line>85</line>
+          <option name="timeStamp" value="144" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/tph-yolov5/detect.py</url>
+          <line>89</line>
+          <option name="timeStamp" value="315" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/tph-yolov5/detect.py</url>
+          <line>36</line>
+          <option name="timeStamp" value="358" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/tph-yolov5/detect.py</url>
+          <line>64</line>
+          <option name="timeStamp" value="359" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/tph-yolov5/models/gradcam.py</url>
+          <line>106</line>
+          <option name="timeStamp" value="387" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/tph-yolov5/models/gradcam.py</url>
+          <line>137</line>
+          <option name="timeStamp" value="388" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/tph-yolov5/models/gradcam.py</url>
+          <line>102</line>
+          <option name="timeStamp" value="389" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/models/common.py</url>
+          <line>404</line>
+          <option name="timeStamp" value="394" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/tph-yolov5/models/common.py</url>
+          <line>530</line>
+          <option name="timeStamp" value="396" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/tph-yolov5/models/yolo.py</url>
+          <line>958</line>
+          <option name="timeStamp" value="397" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/tph_yolov5_main$val.coverage" NAME="val 覆盖结果" MODIFIED="1717383657796" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tph-yolov5" />
+    <SUITE FILE_PATH="coverage/tph_yolov5_main$VisDrone2YOLO_lable.coverage" NAME="VisDrone2YOLO_lable 覆盖结果" MODIFIED="1710381217084" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tph-yolov5" />
+    <SUITE FILE_PATH="coverage/tph_yolov5_main$datasets.coverage" NAME="datasets 覆盖结果" MODIFIED="1710990255708" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tph-yolov5/utils" />
+    <SUITE FILE_PATH="coverage/tph_yolov5_main$export.coverage" NAME="export 覆盖结果" MODIFIED="1711609846544" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tph-yolov5" />
+    <SUITE FILE_PATH="coverage/tph_yolov5_main$main_gradcam.coverage" NAME="main_gradcam 覆盖结果" MODIFIED="1715257200892" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tph-yolov5" />
+    <SUITE FILE_PATH="coverage/tph_yolov5_main$plot_results2__1_.coverage" NAME="plot_results2 (1) 覆盖结果" MODIFIED="1715932342385" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tph-yolov5" />
+    <SUITE FILE_PATH="coverage/tph_yolov5_main$plot_results2.coverage" NAME="plot_results2 覆盖结果" MODIFIED="1715931824659" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tph-yolov5/utils" />
+    <SUITE FILE_PATH="coverage/tph_yolov5_main$val__1_.coverage" NAME="val (1) 覆盖结果" MODIFIED="1716894836981" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/tph_yolov5_main$train.coverage" NAME="train 覆盖结果" MODIFIED="1718282132266" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tph-yolov5" />
+    <SUITE FILE_PATH="coverage/tph_yolov5_main$yolo.coverage" NAME="yolo 覆盖结果" MODIFIED="1714036474575" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tph-yolov5/models" />
+    <SUITE FILE_PATH="coverage/tph_yolov5_main$common.coverage" NAME="common 覆盖结果" MODIFIED="1711941526084" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tph-yolov5/models" />
+    <SUITE FILE_PATH="coverage/tph_yolov5_main$detect.coverage" NAME="detect 覆盖结果" MODIFIED="1715158271501" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tph-yolov5" />
+    <SUITE FILE_PATH="coverage/tph_yolov5_main$_yolov5_heatmap.coverage" NAME=" yolov5_heatmap 覆盖结果" MODIFIED="1715175386873" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tph-yolov5" />
+  </component>
+</project>
