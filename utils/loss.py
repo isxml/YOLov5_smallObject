@@ -6,8 +6,9 @@ Loss functions
 import torch
 import torch.nn as nn
 
-from utils.metrics import bbox_iou
+from utils.metrics import WIoU_bbox_iou
 from utils.torch_utils import is_parallel
+from utils.metrics import bbox_iou, wasserstein_loss
 
 
 def smooth_BCE(eps=0.1):  # https://github.com/ultralytics/yolov3/issues/238#issuecomment-598028441
@@ -61,6 +62,7 @@ class FocalLoss(nn.Module):
         else:  # 'none'
             return loss
 
+
 class VFLoss(nn.Module):
     def __init__(self, loss_fcn, gamma=1.5, alpha=0.25):
         super(VFLoss, self).__init__()
@@ -74,7 +76,8 @@ class VFLoss(nn.Module):
     def forward(self, pred, true):
         loss = self.loss_fcn(pred, true)
         pred_prob = torch.sigmoid(pred)  # prob from logits
-        focal_weight = true * (true > 0.0).float() + self.alpha * (pred_prob - true).abs().pow(self.gamma) * (true <= 0.0).float()
+        focal_weight = true * (true > 0.0).float() + self.alpha * (pred_prob - true).abs().pow(self.gamma) * (
+                    true <= 0.0).float()
         loss *= focal_weight
         if self.reduction == 'mean':
             return loss.mean()
@@ -128,14 +131,29 @@ class ComputeLoss:
         g = h['fl_gamma']  # focal loss gamma
         if g > 0:
             BCEcls, BCEobj = FocalLoss(BCEcls, g), FocalLoss(BCEobj, g)
-
+        # det返回的是检测层，对应的是models/yolo.py->class Detect->
+        # __init__->self.m = nn.ModuleList(nn.Conv2d(x, self.no * self.na, 1) for x in ch)构建的检测头
         det = model.module.model[-1] if is_parallel(model) else model.model[-1]  # Detect() module
+        # det.nl是3，表示检测头的数目，self.balance的结果还是[4.0, 1.0, 0.4]，标识三个检测头对应输出的损失系数。
         self.balance = {3: [4.0, 1.0, 0.4]}.get(det.nl, [4.0, 1.0, 0.25, 0.06, 0.02])  # P3-P7
+        # det.stride是[ 8., 16., 32.]， self.ssi表示stride为16的索引，当autobalance为true时，self.ssi为1.
         self.ssi = list(det.stride).index(16) if autobalance else 0  # stride 16 index
         self.BCEcls, self.BCEobj, self.gr, self.hyp, self.autobalance = BCEcls, BCEobj, 1.0, h, autobalance
         for k in 'na', 'nc', 'nl', 'anchors':
             setattr(self, k, getattr(det, k))
 
+    # 该函数在train.py的318行loss, loss_items = compute_loss(pred, targets.to(device))调用。
+    # 函数定义
+    # 输入1：
+    # p， 是每个预测头输出的结果，
+    # p[0]的每个维度解释：  p[0].shape： torch.Size([16, 3, 80, 80, 85])
+    # 16： batch size
+    # 3： anchor box数量
+    # 80/40/20： 3个检测头特征图大小
+    # 85： coco数据集80个类别+4(x,y,w,h)+1(是否为前景)
+    #输入2:
+    # targets: gt box信息，维度是(n, 6)，其中n是整个batch的图片里gt box的数量，以下都以gt box数量为190来举例。
+    # 6的每一个维度为(图片在batch中的索引， 目标类别， x, y, w, h)
     def __call__(self, p, targets):  # predictions, targets, model
         device = targets.device
         lcls, lbox, lobj = torch.zeros(1, device=device), torch.zeros(1, device=device), torch.zeros(1, device=device)
@@ -154,16 +172,38 @@ class ComputeLoss:
                 pxy = ps[:, :2].sigmoid() * 2 - 0.5
                 pwh = (ps[:, 2:4].sigmoid() * 2) ** 2 * anchors[i]
                 pbox = torch.cat((pxy, pwh), 1)  # predicted box
+                #WIoU
+                #iou = WIoU_bbox_iou(pbox, tbox[i], WIoU=True, scale=True)
+                #if type(iou) is tuple:
+                  #  if len(iou) == 2:
+                   #     lbox += (iou[1].detach().squeeze() * (1 - iou[0].squeeze())).mean()
+                  #      iou = iou[0].squeeze()
+                   # else:
+                    #    lbox += (iou[0] * iou[1]).mean()
+                    #    iou = iou[2].squeeze()
+               # else:
+                   # lbox += (1.0 - iou.squeeze()).mean()  # iou loss
+                   # iou = iou.squeeze()
+               #nms
                 iou = bbox_iou(pbox.T, tbox[i], x1y1x2y2=False, CIoU=True)  # iou(prediction, target)
-                lbox += (1.0 - iou).mean()  # iou loss
+                # iou loss
+                # lbox += (1.0 - iou).mean()
+                # # Objectness
+                # iou = iou.detach().clamp(0).type(tobj.dtype)
 
+                # # NWD loss
+                # 使用了一个iou_ratio 来设置两者损失所占的权重，iou_ratio被设置为0.5
+                nwd = wasserstein_loss(pbox, tbox[i]).squeeze()
+                iou_ratio = 0.5
+                lbox += (1 - iou_ratio) * (1.0 - nwd).mean() + iou_ratio * (1.0 - iou).mean()  # iou loss
                 # Objectness
-                score_iou = iou.detach().clamp(0).type(tobj.dtype)
+                iou = (iou.detach() * iou_ratio + nwd.detach() * (1 - iou_ratio)).clamp(0, 1).type(tobj.dtype)
+
                 # if self.sort_obj_iou:
                 if True:
-                    sort_id = torch.argsort(score_iou)
-                    b, a, gj, gi, score_iou = b[sort_id], a[sort_id], gj[sort_id], gi[sort_id], score_iou[sort_id]
-                tobj[b, a, gj, gi] = (1.0 - self.gr) + self.gr * score_iou  # iou ratio
+                    sort_id = torch.argsort(iou)
+                    b, a, gj, gi, iou = b[sort_id], a[sort_id], gj[sort_id], gi[sort_id], iou[sort_id]
+                tobj[b, a, gj, gi] = (1.0 - self.gr) + self.gr * iou  # iou ratio
 
                 # Classification
                 if self.nc > 1:  # cls loss (only if multiple classes)
@@ -193,7 +233,7 @@ class ComputeLoss:
         # Build targets for compute_loss(), input targets(image,class,x,y,w,h)
         na, nt = self.na, targets.shape[0]  # number of anchors, targets
         tcls, tbox, indices, anch = [], [], [], []
-        gain = torch.ones(7, device=targets.device)  # normalized to gridspace gain
+        gain = torch.ones(7, device=targets.device).long()  # normalized to gridspace gain
         ai = torch.arange(na, device=targets.device).float().view(na, 1).repeat(1, nt)  # same as .repeat_interleave(nt)
         targets = torch.cat((targets.repeat(na, 1, 1), ai[:, :, None]), 2)  # append anchor indices
 
@@ -243,3 +283,6 @@ class ComputeLoss:
             tcls.append(c)  # class
 
         return tcls, tbox, indices, anch
+
+
+

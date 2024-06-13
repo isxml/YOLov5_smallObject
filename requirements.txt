@@ -44,3 +44,4 @@ yolov5~=7.0.13
 timm~=0.4.12
 DCNv4~=1.0.0.post2
 setuptools~=50.3.2
+mmengine~=0.10.4
